@@ -1,0 +1,50 @@
+.container {
+    width: 30rem; /* Width can be adjusted to your preference */
+    position: relative;
+  }
+  
+  .textbox {
+    /* Styling of the textbox */
+    border: 1px solid whitesmoke;
+    height: 2rem;
+    outline: none;
+    box-sizing: border-box;
+    padding: 1px 10px;
+    transition: 200ms ease-in-out;
+    width: 100%;
+  }
+  .textbox:focus {
+    /* Changing border color everytime the textbox has focus */
+    border: 1px solid lightblue;
+    transition: 200ms ease-in-out;
+  }
+  
+  .suggestions {
+    /* Styling of the suggestion container */
+    border: 1px solid whitesmoke;
+    width: 100%;
+    height: fit-content;
+    max-height: 20rem; /* Max height, can be adjusted to your preference*/
+    overflow-y: scroll;
+    position: absolute;
+    background-color: white;
+    z-index: 10;
+  }
+  
+  .suggestions.hidden {
+    /* Hides the suggestions if this class is used */
+    visibility: hidden;
+  }
+  
+  .suggestion {
+    /* Styling of a single suggestion */
+    cursor: pointer;
+    padding: 1px 10px;
+    height: 2rem;
+    display: flex;
+    align-items: center;
+  }
+  .suggestion:hover {
+    /* Changing background color on hover */
+    background-color: whitesmoke;
+  }
