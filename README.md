@@ -23,9 +23,10 @@
 
 We'd like to thank the following people for their contributions:
 
-- **[Felipe](https://github.com/FelipeMTavaresS)** - *Doing the front end*
-- **[Lira](https://github.com/Liragbr)** - *DataBase & Back-End*
-- **[Rodrigo](https://github.com/rogs55)** - *Doing the front end*
+
 - **[Guilherme](https://github.com/Gui5002)** - *Back-End*
-- **[Igor](https://github.com/Egitz)** - *DataBase*
+- **[Rodrigo](https://github.com/rogs55)** - *Doing the front end*
+- **[Felipe](https://github.com/FelipeMTavaresS)** - *Doing the front end*
 - **[Egito](https://github.com/Egitz)** - *Logo vectorization*
+- **[Lira](https://github.com/Liragbr)** - *DataBase & Back-End*
+- **[Igor](https://github.com/Egitz)** - *DataBase*
