@@ -29,5 +29,3 @@ We'd like to thank the following people for their contributions:
 - **[Lira](https://github.com/Liragbr)** - *DataBase & Back-End*
 - **[Egito](https://github.com/Egitz)** - *logo vectorization*
 - **[Guilherme](https://github.com/Gui5002)** - *Back-End*
-
-If you'd like to contribute, please feel free to fork the repository and submit a pull request!
