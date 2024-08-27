@@ -1,5 +1,5 @@
 import React from "react";
-import '/Users/lixod/Documents/Projetos/magic-stock/src/pages/Login/componets/login.css';
+import './login.css';
 
 
 const Login = () => {
