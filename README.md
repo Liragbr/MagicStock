@@ -1,4 +1,7 @@
-# 📦 Magic Stock
+# in progress
+### Check out our preview below
+
+## 📦 Magic Stock
 
 **Magic Stock** is a powerful and intuitive stock management system designed to help businesses efficiently manage their inventory. This project leverages modern web technologies to deliver a seamless and responsive user experience.
 
