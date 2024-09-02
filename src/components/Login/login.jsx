@@ -1,6 +1,8 @@
 import React, { useEffect } from 'react';
 import './login.css';
 import { Helmet } from 'react-helmet';
+import { Link } from 'react-router-dom';
+
 
 const Login = () => {
   useEffect(() => {
@@ -52,7 +54,7 @@ const Login = () => {
           </button>
           <div className="register-link">
             <p>
-              Não está cadastrado? <a href="#">Cadastrar</a>
+              Não está cadastrado? <Link to="/Cadastro">Cadastre-se</Link>
             </p>
           </div>
         </form>
