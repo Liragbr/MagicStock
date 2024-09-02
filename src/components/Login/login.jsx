@@ -26,7 +26,7 @@ const Login = () => {
         />
       </Helmet>
       <div className="container">
-        <form>
+        <form className='form'>
           <h1>Entrar na Plataforma</h1>
           <div className="input-container">
             <input placeholder="Email" type="email" required />

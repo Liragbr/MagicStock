@@ -6,7 +6,7 @@
 }
 
 body.login {
-    background: url(https://fastly.picsum.photos/id/299/1600/900.jpg?hmac=lTa1uFfHcHdvjeB-DEsx72MDDl9L4SXZQrPuQBmApHQ);
+    background: url(https://cdn.leonardo.ai/users/0ee5764b-8b4d-4c04-83f5-c49d36c3e794/generations/54a4e505-fe67-4e1f-bd71-b3b2233630ef/Leonardo_Phoenix_Depict_a_meticulously_organized_and_spotless_3.jpg);
     background-size: cover;
     background-position: center;
     min-height: 100vh;
@@ -17,14 +17,18 @@ body.login {
   }
 
 .container{
-    width: 420px;
+    width: 300px;
     background: transparent;
     border: 2px solid rgba(255, 255, 255, .2);
     backdrop-filter: blur(20px);
     border-radius: 10px;
     padding: 30px 40px;
-
 }
+
+.form{
+    width: 300px;;
+}
+
 h1{
     font-size: 36px;
     text-align: center;
@@ -76,7 +80,7 @@ padding: 20px 45px 20px 20px;
 .submit-button{
     width: 100%;
     height: 50px;
-    background-color: #5100b5;
+    background-color: #222222;
     border: none;
     border-radius:  10px;
     color:#fff;
@@ -88,7 +92,7 @@ padding: 20px 45px 20px 20px;
 }
 
 .submit-button:hover{
-    background-color: #6e16da;
+    background-color: #5e5e5e;
 }
 
 .register-link p {

@@ -37,7 +37,6 @@ export function StickyNavbar() {
         color="blue-gray"
         className="p-1 font-normal"
       >
-        
         <a href="#" className="flex items-center">Contato</a>
       </Typography>
       <Typography
@@ -46,12 +45,9 @@ export function StickyNavbar() {
         color="blue-gray"
         className="p-1 font-normal"
       >
-        
-        <Link href="/login" className="flex items-center">Login</Link>
+        <Link to="/Login" className="flex items-center">Login</Link>
       </Typography>
-      
     </ul>
-    
   );
 
   return (
@@ -66,3 +62,4 @@ export function StickyNavbar() {
     </header>
   );
 }
+export default StickyNavbar; 
