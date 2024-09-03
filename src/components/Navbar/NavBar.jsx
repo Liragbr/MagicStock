@@ -21,7 +21,7 @@ export function StickyNavbar() {
         color="blue-gray"
         className="p-1 font-normal"
       >
-        <a href="#" className="flex items-center">Comece agora</a>
+        <Link to="/Cadastro" className='flexitems-center'>Comece Agora</Link>
       </Typography>
       <Typography
         as="li"
@@ -29,7 +29,7 @@ export function StickyNavbar() {
         color="blue-gray"
         className="p-1 font-normal"
       >
-        <a href="#" className="flex items-center">Sobre nós</a>
+        <Link to="/SobreNos" className="flex items-center">Sobre Nós</Link>
       </Typography>
       <Typography
         as="li"
@@ -37,7 +37,7 @@ export function StickyNavbar() {
         color="blue-gray"
         className="p-1 font-normal"
       >
-        <a href="#" className="flex items-center">Contato</a>
+        <Link to="/Contato" className="flex items-center">Contato</Link>
       </Typography>
       <Typography
         as="li"
