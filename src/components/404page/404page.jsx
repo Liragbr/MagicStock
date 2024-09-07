@@ -1,5 +1,5 @@
-
-import './StarryBackground.css';
+import React from 'react';
+import '../StarryBackground.css';
 
 const NotFoundPage = () => {
   return (
