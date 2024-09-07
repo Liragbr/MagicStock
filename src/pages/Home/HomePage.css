@@ -12,7 +12,11 @@
     z-index: 1; /* Garante que o conteúdo esteja na frente */
     box-shadow: #000 0 0 20px 5px; /* Adiciona uma borda ao redor do conteúdo */
   }
-  
+  .box-shadow {
+    box-shadow: #000 0 0 20px 5px; /* Adiciona uma borda ao redor do conteúdo */
+  }
+
+
   .background-image {
     position: absolute;
     top: 0;

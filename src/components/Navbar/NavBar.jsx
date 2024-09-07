@@ -29,14 +29,6 @@ export function StickyNavbar() {
         color="blue-gray"
         className="p-1 font-normal"
       >
-        <Link to="/SobreNos" className="flex items-center">Sobre Nós</Link>
-      </Typography>
-      <Typography
-        as="li"
-        variant="small"
-        color="blue-gray"
-        className="p-1 font-normal"
-      >
         <Link to="/Contato" className="flex items-center">Contato</Link>
       </Typography>
       <Typography
