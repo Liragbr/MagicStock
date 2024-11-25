@@ -1,18 +1,45 @@
-import React, { useEffect } from 'react';
-
+import { useEffect, useState } from 'react';
 import { Helmet } from 'react-helmet';
-import { Link } from 'react-router-dom';
-
+import { Link, useNavigate } from 'react-router-dom';
+import axios from 'axios';
 
 const Login = () => {
-  useEffect(() => {
+  const [formData, setFormData] = useState({
+    username: '',
+    password: ''
+  });
 
+  const navigate = useNavigate();
+
+  useEffect(() => {
     document.body.classList.add('login');
 
     return () => {
       document.body.classList.remove('login');
     };
   }, []);
+
+  const handleChange = (e) => {
+    setFormData({
+      ...formData,
+      [e.target.name]: e.target.value
+    });
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      await axios.post('http://localhost:3000/login', {
+        username: formData.username,
+        password: formData.password
+      });
+      alert('Login bem-sucedido');
+      navigate('/dashboard'); // Redireciona para a página do dashboard após login bem-sucedido
+    } catch (error) {
+      console.error('Erro ao fazer login', error);
+      alert('Credenciais inválidas');
+    }
+  };
 
   return (
     <>
@@ -21,7 +48,7 @@ const Login = () => {
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>Tela de Login</title>
         <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin />
         <link
           href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,300;0,400;1,100;1,700&display=swap"
           rel="stylesheet"
@@ -37,13 +64,16 @@ const Login = () => {
         <div className="relative flex justify-center items-center h-full w-full">
           <div className="m-8 justify-center items-center">
             <div className="w-full border-2 border-white border-opacity-20 rounded-xl p-5 bg-black bg-opacity-10 backdrop-blur-lg">
-              <form className="w-full h-auto p-10 flex flex-col justify-center items-center">
+              <form className="w-full h-auto p-10 flex flex-col justify-center items-center" onSubmit={handleSubmit}>
                 <h1 className="mb-5 text-2xl text-center text-white">Entrar na Plataforma</h1>
                 <div className="m-1 w-full h-12 border-2 border-white border-opacity-20 rounded-xl p-5 bg-black bg-opacity-10 backdrop-blur-lg flex items-center">
                   <input
                     className="bg-transparent text-white placeholder-white w-full outline-none"
-                    placeholder="Email"
-                    type="email"
+                    placeholder="Nome de usuário"
+                    type="text"
+                    name="username"
+                    value={formData.username}
+                    onChange={handleChange}
                     required
                   />
                   <img
@@ -56,9 +86,12 @@ const Login = () => {
                 </div>
                 <div className="m-1 w-full h-12 border-2 border-white border-opacity-20 rounded-xl p-5 bg-black bg-opacity-10 backdrop-blur-lg flex items-center">
                   <input
-                    className="bg-transparent text-black placeholder-black w-full outline-none filter invert"
+                    className="bg-transparent text-white placeholder-white w-full outline-none"
                     placeholder="Senha"
                     type="password"
+                    name="password"
+                    value={formData.password}
+                    onChange={handleChange}
                     required
                   />
                   <img

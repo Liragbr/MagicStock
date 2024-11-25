@@ -1,4 +1,4 @@
-import  { useRef, useEffect, useState } from "react";
+import { useRef, useEffect, useState } from "react";
 import StickyNavbar from "../../components/Navbar/NavBar";
 import "./HomePage.css";
 import UserReview from "../../components/UsersReview/UsersReview";
@@ -77,11 +77,10 @@ const HomePage = () => {
           />
         </div>
       </div>
-      <div className="w-1/2 flex flex-col justify-center ml-10">
-        <div className="bg-white h-screen">
+      <div className="flex justify-center items-center h-screen">
+        <div className="flex h-screen" ref={targetDivRef}>
           <UserReview />
         </div>
-        
       </div>
     </div>
   );
