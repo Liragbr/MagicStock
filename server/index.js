@@ -1,6 +1,6 @@
 import express from 'express';
 import pkg from 'pg';
-import cors from 'cors'; // Importe o pacote cors
+import cors from 'cors';
 
 const { Pool } = pkg;
 
@@ -23,9 +23,6 @@ app.use(express.json());
 app.use(cors());
 
 // Rota de teste
-const port = 3000;
-
-
 app.get('/', (req, res) => {
   res.send('API funcionando!');
 });
@@ -53,6 +50,26 @@ app.post('/register', async (req, res) => {
   } catch (err) {
     console.error('Erro ao registrar usuário:', err);
     res.status(500).send({ error: err.message, details: err });
+  }
+});
+
+// Rota de login de usuário
+app.get('/login', async (req, res) => {
+  const { username, password } = req.query;
+  console.log(`Tentativa de login com username: ${username} e password: ${password}`);
+  try {
+    const result = await pool.query(
+      'SELECT * FROM users WHERE username = $1 AND password = $2',
+      [username, password]
+    );
+    if (result.rows.length > 0) {
+      res.status(200).json({ message: 'Login bem-sucedido', user: result.rows[0] });
+    } else {
+      res.status(401).json({ message: 'Credenciais inválidas' });
+    }
+  } catch (err) {
+    console.error('Erro ao fazer login:', err);
+    res.status(500).send('Erro no servidor');
   }
 });
 

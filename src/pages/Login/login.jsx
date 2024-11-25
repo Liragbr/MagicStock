@@ -29,12 +29,16 @@ const Login = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      await axios.post('http://localhost:3000/login', {
-        username: formData.username,
-        password: formData.password
+      const response = await axios.get('http://localhost:3000/login', {
+        params: {
+          username: formData.username,
+          password: formData.password
+        }
       });
-      alert('Login bem-sucedido');
-      navigate('/dashboard'); // Redireciona para a página do dashboard após login bem-sucedido
+      if (response.status === 200) {
+        alert('Login bem-sucedido');
+        navigate('/dashboard'); // Redireciona para a página do dashboard após login bem-sucedido
+      }
     } catch (error) {
       console.error('Erro ao fazer login', error);
       alert('Credenciais inválidas');
