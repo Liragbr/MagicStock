@@ -1,6 +1,6 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Helmet } from 'react-helmet';
-import { Link, useHistory } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 
 const Login = () => {
@@ -9,7 +9,7 @@ const Login = () => {
     password: ''
   });
 
-  const history = useHistory();
+  const navigate = useNavigate();
 
   useEffect(() => {
     document.body.classList.add('login');
@@ -29,12 +29,12 @@ const Login = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post('http://localhost:3000/login', {
+      await axios.post('http://localhost:3000/login', {
         username: formData.username,
         password: formData.password
       });
       alert('Login bem-sucedido');
-      history.push('/dashboard'); // Redireciona para a página do dashboard após login bem-sucedido
+      navigate('/dashboard'); // Redireciona para a página do dashboard após login bem-sucedido
     } catch (error) {
       console.error('Erro ao fazer login', error);
       alert('Credenciais inválidas');
@@ -48,7 +48,7 @@ const Login = () => {
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>Tela de Login</title>
         <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin />
         <link
           href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,300;0,400;1,100;1,700&display=swap"
           rel="stylesheet"

@@ -1,5 +1,4 @@
-import 'tailwindcss/tailwind.css';
-import { useState } from 'react';
+import React, { useState } from 'react';
 import axios from 'axios';
 
 const Cadastro = () => {
@@ -25,8 +24,9 @@ const Cadastro = () => {
     }
 
     try {
-      const response = await axios.post('http://localhost:3000/register', {
+      await axios.post('http://localhost:3000/register', {
         username: formData.username,
+        email: formData.email,
         password: formData.password
       });
       alert('Cadastro realizado com sucesso');

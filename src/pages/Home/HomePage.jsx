@@ -1,7 +1,6 @@
-import  { useRef, useEffect, useState } from "react";
+import { useRef, useEffect, useState } from "react";
 import StickyNavbar from "../../components/Navbar/NavBar";
 import "./HomePage.css";
-import ProfileGrid from "../../components/profile/profilegrid";
 import UserReview from "../../components/UsersReview/UsersReview";
 
 const HomePage = () => {
@@ -60,20 +59,10 @@ const HomePage = () => {
           />
         </div>
       </div>
-      <div className="bg-gray-800 h-screen box-shadow ">
-        <h1 className="text-4xl font-bold text-white pt-20 pl-10">
-          Nossa equipe
-        </h1>
-        <h2 className="text-2xl mt-5 text-white pl-10">
-          Conheça os desenvolvedores
-        </h2>
-        <div>
-          <ProfileGrid />
-        </div>
-        <div className="bg-white h-screen box-shadow">
+      <div className="flex justify-center items-center h-screen">
+        <div className="flex h-screen" ref={targetDivRef}>
           <UserReview />
         </div>
-        
       </div>
     </div>
   );

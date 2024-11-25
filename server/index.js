@@ -1,60 +1,59 @@
-const express = require('express');
-const { Pool } = require('pg');
-const app = express();
+import express from 'express';
+import pkg from 'pg';
+import cors from 'cors'; // Importe o pacote cors
 
-// Configuração do Pool de Conexões com PostgreSQL
-const db = new Pool({
-  host: 'localhost',
+const { Pool } = pkg;
+
+const app = express();
+const port = 3000;
+
+// Configuração do pool de conexões do PostgreSQL
+const pool = new Pool({
   user: 'postgres',
-  password: '15121608',
-  database: 'db_usuario',
+  host: 'localhost',
+  database: 'bd_ms',
+  password: '12345',
   port: 5432,
 });
 
-// Middleware para tratar JSON
+// Middleware para parsear JSON
 app.use(express.json());
 
-// Rota POST para inserir um usuário específico no banco de dados
-app.post('/add-user', async (req, res) => {
+// Middleware para habilitar CORS
+app.use(cors());
+
+// Rota de teste
+app.get('/', (req, res) => {
+  res.send('API funcionando!');
+});
+
+// Rota para obter todos os itens
+app.get('/items', async (req, res) => {
   try {
-    // Valores específicos que você deseja inserir
-    const query = "INSERT INTO usuarios(email, usuario, senha) VALUES ('fulanindital@gmail.com', 'fulanindital', '123456')";
-    
-    // Executar a consulta
-    await db.query(query);
-    res.status(201).send('Usuário inserido com sucesso!');
+    const result = await pool.query('SELECT * FROM usuario');
+    res.json(result.rows);
   } catch (err) {
-    console.error('Erro ao inserir usuário:', err);
-    res.status(500).send('Erro ao inserir usuário');
+    console.error('Erro ao obter itens:', err);
+    res.status(500).send('Erro no servidor');
   }
 });
 
+// Rota para adicionar um novo usuário
 app.post('/register', async (req, res) => {
-  const { username, password } = req.body;
+  const { username, email, password } = req.body;
   try {
-    const result = await pool.query("INSERT INTO users (username, password) VALUES ($1, $2) RETURNING *", [username, password]);
+    const result = await pool.query(
+      'INSERT INTO users (username, email, password) VALUES ($1, $2, $3) RETURNING *',
+      [username, email, password]
+    );
     res.status(201).json(result.rows[0]);
-  } catch (error) {
-    console.error(error);
-    res.status(500).send("Erro ao registrar usuário");
+  } catch (err) {
+    console.error('Erro ao registrar usuário:', err);
+    res.status(500).send({ error: err.message, details: err });
   }
 });
 
-app.post('/login', async (req, res) => {
-  const { username, password } = req.body;
-  try {
-    const result = await pool.query("SELECT * FROM users WHERE username = $1 AND password = $2", [username, password]);
-    if (result.rows.length > 0) {
-      res.status(200).send("Login bem-sucedido");
-    } else {
-      res.status(401).send("Credenciais inválidas");
-    }
-  } catch (error) {
-    console.error(error);
-    res.status(500).send("Erro ao fazer login");
-  }
-});
-
+// Inicia o servidor
 app.listen(port, () => {
   console.log(`Servidor rodando em http://localhost:${port}`);
 });
