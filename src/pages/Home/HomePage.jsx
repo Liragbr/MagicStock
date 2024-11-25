@@ -1,7 +1,6 @@
 import  { useRef, useEffect, useState } from "react";
 import StickyNavbar from "../../components/Navbar/NavBar";
 import "./HomePage.css";
-import ProfileGrid from "../../components/profile/profilegrid";
 import UserReview from "../../components/UsersReview/UsersReview";
 
 const HomePage = () => {
@@ -17,7 +16,25 @@ const HomePage = () => {
 
   const handleScrollToDiv = () => {
     if (targetDivRef.current) {
-      targetDivRef.current.scrollIntoView({ behavior: "smooth" });
+      const targetPosition = targetDivRef.current.getBoundingClientRect().top + window.pageYOffset;
+      const startPosition = window.pageYOffset;
+      const distance = targetPosition - startPosition;
+      const duration = 1000; // duração da animação em milissegundos
+      let start = null;
+  
+      const step = (timestamp) => {
+        if (!start) start = timestamp;
+        const progress = timestamp - start;
+        const progressPercentage = Math.min(progress / duration, 1);
+        const easeInOutQuad = (t) => t < 0.5 ? 2 * t * t : -1 + (4 - 2 * t) * t;
+        const ease = easeInOutQuad(progressPercentage);
+        window.scrollTo(0, startPosition + distance * ease);
+        if (progress < duration) {
+          window.requestAnimationFrame(step);
+        }
+      };
+  
+      window.requestAnimationFrame(step);
     }
   };
 
@@ -60,17 +77,8 @@ const HomePage = () => {
           />
         </div>
       </div>
-      <div className="bg-gray-800 h-screen box-shadow ">
-        <h1 className="text-4xl font-bold text-white pt-20 pl-10">
-          Nossa equipe
-        </h1>
-        <h2 className="text-2xl mt-5 text-white pl-10">
-          Conheça os desenvolvedores
-        </h2>
-        <div>
-          <ProfileGrid />
-        </div>
-        <div className="bg-white h-screen box-shadow">
+      <div className="w-1/2 flex flex-col justify-center ml-10">
+        <div className="bg-white h-screen">
           <UserReview />
         </div>
         
