@@ -73,6 +73,9 @@ app.get('/login', async (req, res) => {
   }
 });
 
+
+
+
 // Inicia o servidor
 app.listen(port, () => {
   console.log(`Servidor rodando em http://localhost:${port}`);

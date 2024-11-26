@@ -45,6 +45,10 @@ const Login = () => {
     }
   };
 
+  const handleGoBack = () => {
+    navigate(-1); // Navega para a página anterior
+  };
+
   return (
     <>
       <Helmet>
@@ -82,7 +86,7 @@ const Login = () => {
                   />
                   <img
                     className="filter invert"
-                    width="20" 
+                    width="20"
                     height="20"
                     src="https://img.icons8.com/material-rounded/96/user.png"
                     alt="user--v1"
@@ -119,6 +123,18 @@ const Login = () => {
             </div>
           </div>
         </div>
+
+        {/* Botão de voltar */}
+        <button
+          onClick={handleGoBack}
+          className="absolute top-20 left-6 p-4 text-white bg-gray-300 rounded hover:bg-gray-700 shadow-lg"
+        >
+          <img
+            src="/src/assets/back.svg"
+            alt="Voltar"
+            className="w-16 h-8"
+          />
+        </button>
       </div>
     </>
   );

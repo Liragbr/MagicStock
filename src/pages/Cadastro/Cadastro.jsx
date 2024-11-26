@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 
 const Cadastro = () => {
   const [formData, setFormData] = useState({
@@ -8,6 +9,8 @@ const Cadastro = () => {
     password: '',
     confirmPassword: ''
   });
+
+  const navigate = useNavigate(); // Hook para navegação
 
   const handleChange = (e) => {
     setFormData({
@@ -30,10 +33,15 @@ const Cadastro = () => {
         password: formData.password
       });
       alert('Cadastro realizado com sucesso');
+      navigate('/login'); // Redireciona para a página de login após o cadastro
     } catch (error) {
       console.error('Erro ao registrar usuário', error);
       alert('Erro ao registrar usuário');
     }
+  };
+
+  const handleGoBack = () => {
+    navigate(-1); // Navega para a página anterior
   };
 
   return (
@@ -89,6 +97,18 @@ const Cadastro = () => {
           </div>
         </div>
       </div>
+
+      {/* Botão de voltar */}
+      <button
+        onClick={handleGoBack}
+        className="absolute top-20 left-6 p-4 text-white bg-gray-300 rounded hover:bg-gray-700 shadow-lg"
+      >
+        <img
+          src="/src/assets/back.svg"
+          alt="Voltar"
+          className="w-16 h-8"
+        />
+      </button>
     </div>
   );
 };
