@@ -1,7 +1,7 @@
 import { useRef, useEffect, useState } from "react";
 import StickyNavbar from "../../components/Navbar/NavBar";
 import "./HomePage.css";
-import UserReview from "../../components/UsersReview/UsersReview";
+// import UserReview from "../../components/UsersReview/UsersReview";
 
 const HomePage = () => {
   const paragraphRef = useRef(null);
