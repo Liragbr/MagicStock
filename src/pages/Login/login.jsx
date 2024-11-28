@@ -37,7 +37,7 @@ const Login = () => {
       });
       if (response.status === 200) {
         alert('Login bem-sucedido');
-        navigate('/dashboard'); // Redireciona para a página do dashboard após login bem-sucedido
+        navigate('/cadastroProduto'); // Redireciona para a página do dashboard após login bem-sucedido
       }
     } catch (error) {
       console.error('Erro ao fazer login', error);
