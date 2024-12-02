@@ -5,6 +5,7 @@ import Login from './pages/Login/login';
 import Cadastro from './pages/Cadastro/Cadastro';
 import Contato from './pages/Contato/Contato';
 import CadastroProduto from './pages/Login/cadastroProduto'; 
+import VisualizarProdutos from './pages/Login/VisualizarProduto';
 
 
 
@@ -17,7 +18,8 @@ const App = () => {
         <Route path="/Login" element={<Login />} />
         <Route path="/Contato" element={<Contato/>} />
         <Route path="/CadastroProduto" element={<CadastroProduto />} />
-
+        <Route path="/cadastro" element={<CadastroProduto />} />
+        <Route path="/produtos" element={<VisualizarProdutos />} />
       </Routes>
     </Router>
   );

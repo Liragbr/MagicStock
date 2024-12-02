@@ -1,6 +1,5 @@
-// CadastroProduto.js
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom'; 
+import { useNavigate } from 'react-router-dom';
 
 function CadastroProduto() {
   const [img, setImg] = useState('');
@@ -9,27 +8,45 @@ function CadastroProduto() {
   const [preco, setPreco] = useState('');
   const [barcode, setBarcode] = useState('');
   const [produtos, setProdutos] = useState([]);
-  
-  const navigate = useNavigate(); 
 
-  const handleSubmit = (e) => {
+  const navigate = useNavigate();
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
     const novoProduto = {
       img,
-      produto,
+      name: produto,
       qtd,
-      preco,
+      price: preco,
       barcode,
     };
 
-    setProdutos([...produtos, novoProduto]);
+    try {
+      const response = await fetch('http://localhost:3000/products', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(novoProduto),
+      });
 
-    // Limpa os campos após o envio
-    setProduto('');
-    setQuantidade('');
-    setPreco('');
-    setCodigoBarras('');
+      if (response.ok) {
+        const data = await response.json();
+        setProdutos([...produtos, data.product]);
+
+        // Limpa os campos após o envio
+        setImg('');
+        setProduto('');
+        setQtd('');
+        setPreco('');
+        setBarcode('');
+      } else {
+        console.error('Erro ao adicionar produto:', response.statusText);
+      }
+    } catch (err) {
+      console.error('Erro ao adicionar produto:', err);
+    }
   };
 
   const handleNavigate = () => {
@@ -37,41 +54,37 @@ function CadastroProduto() {
   };
 
   return (
-    <main class="px-6 py-8">
-    <div class="flex justify-between items-center">
-      <h2 class="text-2xl font-bold">Produce</h2>
-      <span class="text-gray-500">Fresh — August 21, 2023</span>
-    </div>
-
-
-    <div class="mt-4 flex items-center gap-4">
-      <button class="bg-green-700 text-white px-4 py-2 rounded-md">Default</button>
-      <button class="border px-4 py-2 rounded-md">A-Z</button>
-      <button class="border px-4 py-2 rounded-md">List view</button>
-    </div>
-
-
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mt-8">
-
-      <div class="border rounded-lg overflow-hidden">
-        <img src="https://via.placeholder.com/300" alt="Heirloom tomato" class="w-full">
-        <div class="p-4">
-          <h3 class="font-bold">Heirloom tomato</h3>
-          <p class="text-green-700">$5.99 / lb</p>
-          <p class="text-sm text-gray-500">Grown in San Juan Capistrano, CA</p>
-        </div>
+    <main className="px-6 py-8">
+      <div className="flex justify-between items-center">
+        <h2 className="text-2xl font-bold">Cadastro de Produto</h2>
       </div>
 
-      <div class="border rounded-lg overflow-hidden">
-        <img src="https://via.placeholder.com/300" alt="Organic ginger" class="w-full">
-        <div class="p-4">
-          <h3 class="font-bold">Organic ginger</h3>
-          <p class="text-green-700">$12.99 / lb</p>
-          <p class="text-sm text-gray-500">Grown in Huntington Beach, CA</p>
+      <form onSubmit={handleSubmit}>
+        <div>
+          <label>Imagem:</label>
+          <input type="text" value={img} onChange={(e) => setImg(e.target.value)} />
         </div>
-      </div>
-    </div>
-  </main>
+        <div>
+          <label>Produto:</label>
+          <input type="text" value={produto} onChange={(e) => setProduto(e.target.value)} />
+        </div>
+        <div>
+          <label>Quantidade:</label>
+          <input type="number" value={qtd} onChange={(e) => setQtd(e.target.value)} />
+        </div>
+        <div>
+          <label>Preço:</label>
+          <input type="number" value={preco} onChange={(e) => setPreco(e.target.value)} />
+        </div>
+        <div>
+          <label>Código de Barras:</label>
+          <input type="text" value={barcode} onChange={(e) => setBarcode(e.target.value)} />
+        </div>
+        <button type="submit">Cadastrar Produto</button>
+      </form>
+
+      <button onClick={handleNavigate}>Ver Produtos</button>
+    </main>
   );
 }
 
