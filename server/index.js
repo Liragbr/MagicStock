@@ -1,6 +1,7 @@
 import express from 'express';
 import pkg from 'pg';
 import cors from 'cors';
+import productRoutes from './produtos.js';
 
 const { Pool } = pkg;
 
@@ -73,8 +74,8 @@ app.get('/login', async (req, res) => {
   }
 });
 
-
-
+// Use o roteador de produtos
+app.use('/products', productRoutes);
 
 // Inicia o servidor
 app.listen(port, () => {
